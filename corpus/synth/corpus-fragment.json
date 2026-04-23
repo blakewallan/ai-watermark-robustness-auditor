@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "description": "Corpus fragment produced by tools/sign-corpus.mjs on 2026-04-23T03:23:18.399Z. Append these entries into corpus/corpus.json to include them in the default corpus.",
+  "sourceTag": "synth",
+  "signingCredentials": "public test credentials from contentauth/c2patool (NOT production)",
+  "items": [
+    {
+      "id": "synth-1080p30-h265-testsrc2-5s",
+      "label": "synth / synth-1080p30-h265-testsrc2-5s.mp4",
+      "path": "synth/synth-1080p30-h265-testsrc2-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "0c2753df4814ab98d3a435701cb83703ac5b9336598fa9a03716e96b029bc34e",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-1080p30-h265-testsrc2-5s.mp4 (3194336 B). Signed in 13 ms."
+    },
+    {
+      "id": "synth-1080p30-testsrc2-5s",
+      "label": "synth / synth-1080p30-testsrc2-5s.mp4",
+      "path": "synth/synth-1080p30-testsrc2-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "91712591afbe81aa227f87e005bba2fea06be87c840de85bb992559a96943063",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-1080p30-testsrc2-5s.mp4 (3605361 B). Signed in 11 ms."
+    },
+    {
+      "id": "synth-240p24-testsrc2-3s",
+      "label": "synth / synth-240p24-testsrc2-3s.mp4",
+      "path": "synth/synth-240p24-testsrc2-3s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "88657f9d078d4a434604d01a4d1ea4620d0a1845896117736580bcc26c4b586b",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-240p24-testsrc2-3s.mp4 (129324 B). Signed in 4 ms."
+    },
+    {
+      "id": "synth-480p30-testsrc2-5s",
+      "label": "synth / synth-480p30-testsrc2-5s.mp4",
+      "path": "synth/synth-480p30-testsrc2-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "88dcbd25fb8e6708ea811783856a7fef2588d44b027ff8e62842bc7ef6a1e5ab",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-480p30-testsrc2-5s.mp4 (785736 B). Signed in 5 ms."
+    },
+    {
+      "id": "synth-720p30-mandelbrot-5s",
+      "label": "synth / synth-720p30-mandelbrot-5s.mp4",
+      "path": "synth/synth-720p30-mandelbrot-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "6f647b7bf985744b681526b6a7d2c50838b3178c3be87cd95bcbf732ed871fe4",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-720p30-mandelbrot-5s.mp4 (2674034 B). Signed in 8 ms."
+    },
+    {
+      "id": "synth-720p60-smptebars-3s",
+      "label": "synth / synth-720p60-smptebars-3s.mp4",
+      "path": "synth/synth-720p60-smptebars-3s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "f9e8ac13edd55159ffb6983caf1657f6cd060442bdf952580dd62ae838b84b29",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-720p60-smptebars-3s.mp4 (51019 B). Signed in 4 ms."
+    },
+    {
+      "id": "synth-audio-only-aac-10s",
+      "label": "synth / synth-audio-only-aac-10s.m4a",
+      "path": "synth/synth-audio-only-aac-10s.m4a",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "5d9be2c37909f78aa611cc2904a1fa5199a2f2522448b1f2a2d274579920edf3",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-audio-only-aac-10s.m4a (162156 B). Signed in 4 ms."
+    },
+    {
+      "id": "synth-long-720p30-testsrc2-15s",
+      "label": "synth / synth-long-720p30-testsrc2-15s.mp4",
+      "path": "synth/synth-long-720p30-testsrc2-15s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "e246c1281109c5de04536b50cc2cdf70916cae91e93d60b211b100d3ab58dc87",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-long-720p30-testsrc2-15s.mp4 (5398946 B). Signed in 16 ms."
+    },
+    {
+      "id": "synth-png-testsrc2-512",
+      "label": "synth / synth-png-testsrc2-512.png",
+      "path": "synth/synth-png-testsrc2-512.png",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "1c88c776ae617c6071dc981d5de1149d75352360a4105acc096031dcd44768af",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-png-testsrc2-512.png (31143 B). Signed in 23 ms."
+    },
+    {
+      "id": "synth-square-720-cellauto-5s",
+      "label": "synth / synth-square-720-cellauto-5s.mp4",
+      "path": "synth/synth-square-720-cellauto-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "d55842fe5bf49242a41688d9b10408aaf72e30cfe7e702cd948e3172fcc86da7",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-square-720-cellauto-5s.mp4 (457268 B). Signed in 5 ms."
+    },
+    {
+      "id": "synth-vertical-720x1280-rgbtestsrc-5s",
+      "label": "synth / synth-vertical-720x1280-rgbtestsrc-5s.mp4",
+      "path": "synth/synth-vertical-720x1280-rgbtestsrc-5s.mp4",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "dd4c396ab1542e9be0491af90f6ca93b647b42a90e752c053ef0d32fde53f24f",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-vertical-720x1280-rgbtestsrc-5s.mp4 (77925 B). Signed in 5 ms."
+    },
+    {
+      "id": "synth-webp-mandelbrot-512",
+      "label": "synth / synth-webp-mandelbrot-512.webp",
+      "path": "synth/synth-webp-mandelbrot-512.webp",
+      "expectedWatermarks": [
+        "c2pa"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:ffmpeg-synthetic",
+      "sha256": "53712a8670309679c9f62e711e82f1d16ecaf94417847f3cefb73129559faf69",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-webp-mandelbrot-512.webp (20278 B). Signed in 23 ms."
+    }
+  ]
+}

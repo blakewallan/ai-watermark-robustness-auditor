@@ -1,0 +1,49 @@
+node_modules/
+dist/
+coverage/
+
+# Test corpus — ad-hoc samples stay local, but the bundled fixtures
+# (MIT-licensed Adobe `c2pa-js` samples and CC-BY-SA-4.0 Truepic sample
+# from c2pa-org/public-testfiles; see their respective NOTICE.md files)
+# and the manifest are committed so `watermark-audit run --corpus=corpus/corpus.json`
+# works out of the box.
+corpus/*
+!corpus/.gitkeep
+!corpus/README.md
+!corpus/corpus.json
+!corpus/adobe-c2pa-js/
+!corpus/adobe-c2pa-js/**
+!corpus/c2pa-org-public/
+!corpus/c2pa-org-public/**
+!corpus/synth/
+!corpus/synth/**
+!corpus/synth-xmp/
+!corpus/synth-xmp/**
+
+# Generated reports and scratch work. sample-run.json is the canonical
+# reference run committed with the repo so readers can see the JSON report
+# shape without having to run the matrix themselves.
+reports/*
+!reports/.gitkeep
+!reports/sample-run.json
+work/
+
+# sign-corpus.mjs caches public test credentials here on demand.
+# Treated as untrusted test material even though they are public.
+tools/.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+.env
+.env.local
+
+# Tarballs from npm pack
+*.tgz
+
+# ffmpeg experimental scratch
+init.mp4
+

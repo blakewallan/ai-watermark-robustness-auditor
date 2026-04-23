@@ -1,0 +1,56 @@
+{
+  "name": "ai-watermark-robustness-auditor",
+  "version": "0.0.1",
+  "description": "Independent test lab for AI watermark and content-credential robustness. Given a watermarked video, runs a standardized attack battery (re-encode, platform re-upload simulation, screen capture, crop, ABR ladder, filter chains) and emits a signed robustness-score report mapped to EU AI Act Art. 50(2) 'robust and reliable' language.",
+  "keywords": [
+    "ai",
+    "watermark",
+    "robustness",
+    "eu-ai-act",
+    "article-50",
+    "c2pa",
+    "synthid",
+    "video",
+    "transcoding",
+    "compliance",
+    "auditor"
+  ],
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "watermark-audit": "dist/bin/watermark-audit.js"
+  },
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "audit": "node dist/bin/watermark-audit.js",
+    "sign-corpus": "node tools/sign-corpus.mjs",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "execa": "^9.5.1",
+    "picocolors": "^1.1.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@contentauth/c2pa-node": "^0.5.4",
+    "@types/node": "^22.10.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "description": "Corpus fragment produced by tools/sign-corpus.mjs on 2026-04-23T03:43:01.571Z. Append these entries into corpus/corpus.json to include them in the default corpus.",
+  "sourceTag": "synth-xmp",
+  "signingCredentials": "public test credentials from contentauth/c2patool (NOT production)",
+  "items": [
+    {
+      "id": "synth-xmp-algorithmic",
+      "label": "synth-xmp / synth-xmp-algorithmic.jpg",
+      "path": "synth-xmp/synth-xmp-algorithmic.jpg",
+      "expectedWatermarks": [
+        "c2pa",
+        "iptc-xmp"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:synth-xmp",
+      "sha256": "8933d295cb772e38b1fd0ed1a5a4aa723c4fb22b5e41c7dd1073925b0bfc8146",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-algorithmic.jpg (21903 B). Signed in 23 ms."
+    },
+    {
+      "id": "synth-xmp-capture-video",
+      "label": "synth-xmp / synth-xmp-capture-video.mp4",
+      "path": "synth-xmp/synth-xmp-capture-video.mp4",
+      "expectedWatermarks": [
+        "c2pa",
+        "iptc-xmp"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:synth-xmp",
+      "sha256": "2f5d4f9085f633fad4b0c1718e9d4d9059f44616792b173e035643e4a33d44db",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-capture-video.mp4 (318365 B). Signed in 5 ms."
+    },
+    {
+      "id": "synth-xmp-composite-video",
+      "label": "synth-xmp / synth-xmp-composite-video.mp4",
+      "path": "synth-xmp/synth-xmp-composite-video.mp4",
+      "expectedWatermarks": [
+        "c2pa",
+        "iptc-xmp"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:synth-xmp",
+      "sha256": "dd15a408b90b1026a79a685f2af14d442f92ab4e4f7bde94301cc1795cba2d4e",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-composite-video.mp4 (473634 B). Signed in 5 ms."
+    },
+    {
+      "id": "synth-xmp-trained-video",
+      "label": "synth-xmp / synth-xmp-trained-video.mp4",
+      "path": "synth-xmp/synth-xmp-trained-video.mp4",
+      "expectedWatermarks": [
+        "c2pa",
+        "iptc-xmp"
+      ],
+      "license": "CC0-1.0",
+      "source": "local:synth-xmp",
+      "sha256": "69e9659c87e625323afa3e7c779765de414ac643f817f99b010c12ecbfc42259",
+      "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-trained-video.mp4 (318374 B). Signed in 5 ms."
+    }
+  ]
+}

@@ -1,0 +1,4150 @@
+{
+  "schema": "ai-watermark-robustness/v0.0",
+  "runId": "run-2026-04-23T04-03-39-986Z",
+  "generatedAt": "2026-04-23T04:04:24.658Z",
+  "summary": {
+    "inputs": 24,
+    "attacks": 5,
+    "detectors": 3,
+    "cells": 360
+  },
+  "scores": [
+    {
+      "detectorId": "detector.c2pa",
+      "cellsConsidered": 91,
+      "survived": 19,
+      "survivalRate": 0.2087912087912088,
+      "grade": "F",
+      "excludedNoBaseline": 15,
+      "excludedAttackError": 14
+    },
+    {
+      "detectorId": "detector.xmp-dst",
+      "cellsConsidered": 19,
+      "survived": 3,
+      "survivalRate": 0.15789473684210525,
+      "grade": "F",
+      "excludedNoBaseline": 100,
+      "excludedAttackError": 1
+    },
+    {
+      "detectorId": "detector.null",
+      "cellsConsidered": 0,
+      "survived": 0,
+      "survivalRate": 0,
+      "grade": "F",
+      "excludedNoBaseline": 120,
+      "excludedAttackError": 0
+    }
+  ],
+  "report": {
+    "env": {
+      "methodologyVersion": "0.0-scaffold",
+      "auditorVersion": "0.0.1",
+      "ffmpegVersion": "ffmpeg version 8.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "os": "win32 x64",
+      "nodeVersion": "v24.15.0",
+      "startedAt": "2026-04-23T04:03:40.016Z",
+      "finishedAt": "2026-04-23T04:04:24.658Z"
+    },
+    "corpus": [
+      {
+        "id": "adobe-c-cawg",
+        "label": "c2pa-web/C_with_CAWG_data.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\C_with_CAWG_data.jpg",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "C2PA JPEG with CAWG (Creator Assertions Working Group) identity data.",
+        "sha256": "fa0b257c863cb5b367135a017813ce0c1fbfc690a03e94acdd047c25c2d1ed46",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/C_with_CAWG_data.jpg"
+      },
+      {
+        "id": "adobe-c-cawg-thumb",
+        "label": "c2pa-web/C_with_CAWG_data_thumbnail.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\C_with_CAWG_data_thumbnail.jpg",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Thumbnail variant of the CAWG sample. Useful as a small-file smoke test.",
+        "sha256": "c13676faf4036e8847f6bce61734376bf8c14fe5f1bc66ae85a2c3106e0fc300",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/C_with_CAWG_data_thumbnail.jpg"
+      },
+      {
+        "id": "adobe-c-jpg",
+        "label": "c2pa-web/C.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\C.jpg",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Reference C2PA JPEG used by c2pa-web's own test suite. Baseline has error-severity issues; expected.",
+        "sha256": "a2d14755db55de67a47c04090340d8266e892367be4104a45626d7a6fa6e9ffd",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/C.jpg"
+      },
+      {
+        "id": "adobe-dash1",
+        "label": "c2pa-web/dash1.m4s",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\dash1.m4s",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "DASH media segment (fMP4 moof + mdat). Pairs with adobe-dashinit.",
+        "sha256": "6967526d29a85a1246c56850a20fa545cf900798e58492bb73cd34a229666e80",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/dash1.m4s"
+      },
+      {
+        "id": "adobe-dashinit",
+        "label": "c2pa-web/dashinit.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\dashinit.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "DASH initialization segment (ISOBMFF moov-only). Target for container.strip.c2pa and the primary MP4 smoke-test.",
+        "sha256": "98932f75cc3f796ce77bbb3b7306c9e09756b099d7fd4335219eec73a9ea0bf8",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/dashinit.mp4"
+      },
+      {
+        "id": "adobe-no-alg",
+        "label": "c2pa-web/no_alg.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\no_alg.jpg",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Test fixture with a missing algorithm field; exercises detector error paths.",
+        "sha256": "7c91641416c18319b823c292ae603c5354892ac365c05543519154c48c6a1f8a",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/no_alg.jpg"
+      },
+      {
+        "id": "adobe-pirateship",
+        "label": "c2pa-web/PirateShip_save_credentials_to_cloud.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\adobe-c2pa-js\\PirateShip_save_credentials_to_cloud.jpg",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Larger (~480 KB) sample with cloud-credentials workflow metadata.",
+        "sha256": "54620b5f7b7bfd657f74732064ca3cb509f512072c1ee9bd03d5f3f1a0bc8d5f",
+        "license": "MIT",
+        "source": "https://github.com/contentauth/c2pa-js/blob/main/packages/c2pa-web/test/assets/PirateShip_save_credentials_to_cloud.jpg"
+      },
+      {
+        "id": "synth-1080p30-h265-testsrc2-5s",
+        "label": "synth / synth-1080p30-h265-testsrc2-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-1080p30-h265-testsrc2-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-1080p30-h265-testsrc2-5s.mp4 (3194336 B). Signed in 13 ms.",
+        "sha256": "0c2753df4814ab98d3a435701cb83703ac5b9336598fa9a03716e96b029bc34e",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-1080p30-testsrc2-5s",
+        "label": "synth / synth-1080p30-testsrc2-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-1080p30-testsrc2-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-1080p30-testsrc2-5s.mp4 (3605361 B). Signed in 11 ms.",
+        "sha256": "91712591afbe81aa227f87e005bba2fea06be87c840de85bb992559a96943063",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-240p24-testsrc2-3s",
+        "label": "synth / synth-240p24-testsrc2-3s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-240p24-testsrc2-3s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-240p24-testsrc2-3s.mp4 (129324 B). Signed in 4 ms.",
+        "sha256": "88657f9d078d4a434604d01a4d1ea4620d0a1845896117736580bcc26c4b586b",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-480p30-testsrc2-5s",
+        "label": "synth / synth-480p30-testsrc2-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-480p30-testsrc2-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-480p30-testsrc2-5s.mp4 (785736 B). Signed in 5 ms.",
+        "sha256": "88dcbd25fb8e6708ea811783856a7fef2588d44b027ff8e62842bc7ef6a1e5ab",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-720p30-mandelbrot-5s",
+        "label": "synth / synth-720p30-mandelbrot-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-720p30-mandelbrot-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-720p30-mandelbrot-5s.mp4 (2674034 B). Signed in 8 ms.",
+        "sha256": "6f647b7bf985744b681526b6a7d2c50838b3178c3be87cd95bcbf732ed871fe4",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-720p60-smptebars-3s",
+        "label": "synth / synth-720p60-smptebars-3s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-720p60-smptebars-3s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-720p60-smptebars-3s.mp4 (51019 B). Signed in 4 ms.",
+        "sha256": "f9e8ac13edd55159ffb6983caf1657f6cd060442bdf952580dd62ae838b84b29",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-audio-only-aac-10s",
+        "label": "synth / synth-audio-only-aac-10s.m4a",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-audio-only-aac-10s.m4a",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-audio-only-aac-10s.m4a (162156 B). Signed in 4 ms.",
+        "sha256": "5d9be2c37909f78aa611cc2904a1fa5199a2f2522448b1f2a2d274579920edf3",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-long-720p30-testsrc2-15s",
+        "label": "synth / synth-long-720p30-testsrc2-15s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-long-720p30-testsrc2-15s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-long-720p30-testsrc2-15s.mp4 (5398946 B). Signed in 16 ms.",
+        "sha256": "e246c1281109c5de04536b50cc2cdf70916cae91e93d60b211b100d3ab58dc87",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-png-testsrc2-512",
+        "label": "synth / synth-png-testsrc2-512.png",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-png-testsrc2-512.png",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-png-testsrc2-512.png (31143 B). Signed in 23 ms.",
+        "sha256": "1c88c776ae617c6071dc981d5de1149d75352360a4105acc096031dcd44768af",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-square-720-cellauto-5s",
+        "label": "synth / synth-square-720-cellauto-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-square-720-cellauto-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-square-720-cellauto-5s.mp4 (457268 B). Signed in 5 ms.",
+        "sha256": "d55842fe5bf49242a41688d9b10408aaf72e30cfe7e702cd948e3172fcc86da7",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "label": "synth / synth-vertical-720x1280-rgbtestsrc-5s.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-vertical-720x1280-rgbtestsrc-5s.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-vertical-720x1280-rgbtestsrc-5s.mp4 (77925 B). Signed in 5 ms.",
+        "sha256": "dd4c396ab1542e9be0491af90f6ca93b647b42a90e752c053ef0d32fde53f24f",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-webp-mandelbrot-512",
+        "label": "synth / synth-webp-mandelbrot-512.webp",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth\\synth-webp-mandelbrot-512.webp",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-webp-mandelbrot-512.webp (20278 B). Signed in 23 ms.",
+        "sha256": "53712a8670309679c9f62e711e82f1d16ecaf94417847f3cefb73129559faf69",
+        "license": "CC0-1.0",
+        "source": "local:ffmpeg-synthetic"
+      },
+      {
+        "id": "synth-xmp-algorithmic",
+        "label": "synth-xmp / synth-xmp-algorithmic.jpg",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth-xmp\\synth-xmp-algorithmic.jpg",
+        "expectedWatermarks": [
+          "c2pa",
+          "iptc-xmp"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-algorithmic.jpg (21903 B). Signed in 23 ms.",
+        "sha256": "8933d295cb772e38b1fd0ed1a5a4aa723c4fb22b5e41c7dd1073925b0bfc8146",
+        "license": "CC0-1.0",
+        "source": "local:synth-xmp"
+      },
+      {
+        "id": "synth-xmp-capture-video",
+        "label": "synth-xmp / synth-xmp-capture-video.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth-xmp\\synth-xmp-capture-video.mp4",
+        "expectedWatermarks": [
+          "c2pa",
+          "iptc-xmp"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-capture-video.mp4 (318365 B). Signed in 5 ms.",
+        "sha256": "2f5d4f9085f633fad4b0c1718e9d4d9059f44616792b173e035643e4a33d44db",
+        "license": "CC0-1.0",
+        "source": "local:synth-xmp"
+      },
+      {
+        "id": "synth-xmp-composite-video",
+        "label": "synth-xmp / synth-xmp-composite-video.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth-xmp\\synth-xmp-composite-video.mp4",
+        "expectedWatermarks": [
+          "c2pa",
+          "iptc-xmp"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-composite-video.mp4 (473634 B). Signed in 5 ms.",
+        "sha256": "dd15a408b90b1026a79a685f2af14d442f92ab4e4f7bde94301cc1795cba2d4e",
+        "license": "CC0-1.0",
+        "source": "local:synth-xmp"
+      },
+      {
+        "id": "synth-xmp-trained-video",
+        "label": "synth-xmp / synth-xmp-trained-video.mp4",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\synth-xmp\\synth-xmp-trained-video.mp4",
+        "expectedWatermarks": [
+          "c2pa",
+          "iptc-xmp"
+        ],
+        "notes": "Signed by tools/sign-corpus.mjs with public test credentials. Input: synth-xmp-trained-video.mp4 (318374 B). Signed in 5 ms.",
+        "sha256": "69e9659c87e625323afa3e7c779765de414ac643f817f99b010c12ecbfc42259",
+        "license": "CC0-1.0",
+        "source": "local:synth-xmp"
+      },
+      {
+        "id": "truepic-zoetrope",
+        "label": "c2pa-org public-testfiles / Truepic zoetrope 2023-02-12",
+        "path": "C:\\Users\\blake\\OneDrive\\Documents\\Projects\\ai-watermark-robustness-auditor\\corpus\\c2pa-org-public\\truepic-20230212-zoetrope.mp4",
+        "expectedWatermarks": [
+          "c2pa"
+        ],
+        "notes": "Real C2PA-signed MP4 (15 MB, C2PA 1.4 spec). Primary headline sample for the attack battery — produces meaningful survival measurements across reencode, platform-sim, ABR ladder, and container.strip.c2pa.",
+        "sha256": "23db1d7891973ad0eed6f87967abc2e748663afddacfb0ceb839aa20848cfff3",
+        "license": "CC-BY-SA-4.0",
+        "source": "https://github.com/c2pa-org/public-testfiles/blob/main/legacy/1.4/video/mp4/truepic-20230212-zoetrope.mp4"
+      }
+    ],
+    "attacks": [
+      {
+        "id": "reencode.h264.crf23",
+        "category": "reencode",
+        "title": "H.264 re-encode @ CRF 23 (baseline floor)"
+      },
+      {
+        "id": "platform-sim.youtube.1080p",
+        "category": "platform-sim",
+        "title": "YouTube 1080p30 UGC (VP9 / Opus / WebM)"
+      },
+      {
+        "id": "abr-ladder.hls-default",
+        "category": "abr-ladder",
+        "title": "HLS default-ladder 720p round-trip (VOD origin transcode)"
+      },
+      {
+        "id": "container.strip.c2pa",
+        "category": "container",
+        "title": "Strip C2PA uuid boxes (size-preserving)"
+      },
+      {
+        "id": "container.strip.xmp",
+        "category": "container",
+        "title": "Strip XMP packets (size-preserving where required)"
+      }
+    ],
+    "detectors": [
+      {
+        "id": "detector.c2pa",
+        "watermarkKind": "c2pa",
+        "title": "C2PA manifest (via c2pa-manifest-validator)"
+      },
+      {
+        "id": "detector.xmp-dst",
+        "watermarkKind": "iptc-xmp",
+        "title": "IPTC XMP DigitalSourceType (unsigned)"
+      },
+      {
+        "id": "detector.null",
+        "watermarkKind": "unknown",
+        "title": "Null detector (negative control)"
+      }
+    ],
+    "baseline": [
+      {
+        "inputId": "adobe-c-cawg",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "detectorId": "detector.c2pa",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-dash1",
+        "detectorId": "detector.c2pa",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-dash1",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-dash1",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "detectorId": "detector.c2pa",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "detectorId": "detector.xmp-dst",
+        "detected": true,
+        "confidence": 1
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "detectorId": "detector.xmp-dst",
+        "detected": true,
+        "confidence": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "detectorId": "detector.xmp-dst",
+        "detected": true,
+        "confidence": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "detectorId": "detector.xmp-dst",
+        "detected": true,
+        "confidence": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "detectorId": "detector.c2pa",
+        "detected": true,
+        "confidence": 0.5
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "detectorId": "detector.xmp-dst",
+        "detected": false,
+        "confidence": 0
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "detectorId": "detector.null",
+        "detected": false,
+        "confidence": 0
+      }
+    ],
+    "cells": [
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 72
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 72
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 72
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 176,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 176
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 176
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-cawg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 115,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 115
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 115
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 43,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 43,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 43,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg-thumb is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg-thumb is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-cawg-thumb is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-cawg-thumb",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 70
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 70
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 70
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 166,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 166
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 166
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-jpg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-jpg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-c-jpg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-c-jpg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 33,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 33,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 33,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 31,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 31,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 31,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 32,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 32,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 32,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dash1",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 36,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 36,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 36,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during reencode.h264.crf23"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 35,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 35,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 35,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during platform-sim.youtube.1080p"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 34,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 34,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 34,
+        "attackErrorMessage": "ffmpeg exited 3199971767 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-dashinit",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 95,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 95
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 95
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 52
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-no-alg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-no-alg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-no-alg is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: unknown algorithm"
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-no-alg",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 78
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 78
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 78
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-pirateship is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-pirateship is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input adobe-pirateship is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "adobe-pirateship",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 385
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 385
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 385
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2349,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2349
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2349
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 306
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 306
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 306
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-1080p30-h265-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 350
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 350
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 350
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2190,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2190
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2190
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 272
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 272
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 272
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-1080p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 94
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 94
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 94
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 406,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 406
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 406
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 130
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 130
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 130
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-240p24-testsrc2-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 139
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 139
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 139
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1163,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1163
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1163
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 225
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 225
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 225
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-480p30-testsrc2-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 248
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 248
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 248
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1762,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1762
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1762
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 278
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 278
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 278
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p30-mandelbrot-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 170
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 170
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 170
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 396,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 396
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 396
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 171
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 171
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 171
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-720p60-smptebars-3s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 108
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 108
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 108
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 62,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 62
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 62
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 181
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 181
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 181
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-audio-only-aac-10s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 478
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 478
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 478
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3947,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3947
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 3947
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 496
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 496
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 496
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 5
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 5
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 5
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 4
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 4
+      },
+      {
+        "inputId": "synth-long-720p30-testsrc2-15s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 4
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 49
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 112,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 112
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 112
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 45,
+        "attackErrorMessage": "ffmpeg exited 4294967274 during abr-ladder.hls-default"
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-png-testsrc2-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-png-testsrc2-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-png-testsrc2-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-png-testsrc2-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 177
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 177
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 177
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 740,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 740
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 740
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 217
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 217
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 217
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-square-720-cellauto-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 168
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 655,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 655
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 655
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 152
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 152
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 152
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-vertical-720x1280-rgbtestsrc-5s",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 2
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 50
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 103,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 103
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 103
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 58
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 58
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 58
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a container format this attack supports (JPEG, ISOBMFF, PNG). Add support or mark the item as inapplicable."
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a container format this attack supports (JPEG, ISOBMFF, PNG). Add support or mark the item as inapplicable."
+      },
+      {
+        "inputId": "synth-webp-mandelbrot-512",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-webp-mandelbrot-512 is not a container format this attack supports (JPEG, ISOBMFF, PNG). Add support or mark the item as inapplicable."
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 42
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 42
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 42
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 98,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 98
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 98
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 54
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 54
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 54
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-xmp-algorithmic is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-xmp-algorithmic is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 0,
+        "attackErrorMessage": "Input synth-xmp-algorithmic is not a recognisable ISOBMFF file; container.strip.c2pa only applies to MP4/MOV/HEIF."
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-algorithmic",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 90
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 90
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 90
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 161
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 161
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 161
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 1,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-capture-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 102
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 102
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 102
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 622,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 622
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 622
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 185
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 185
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 185
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 1,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-composite-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 93
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 93
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 93
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 550
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 160
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 160
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 160
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 1,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "synth-xmp-trained-video",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1028
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1028
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "reencode.h264.crf23",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 1028
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 4188,
+        "detectErrorMessage": "c2pa-validate exit 2: Error: c2pa-node Reader.fromAsset failed: type is unsupported"
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 4188
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "platform-sim.youtube.1080p",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 4188
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 662
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 662
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "abr-ladder.hls-default",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 662
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 10
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 10
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.c2pa",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 10
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.c2pa",
+        "baselineDetected": true,
+        "postAttackDetected": true,
+        "postAttackConfidence": 0.5,
+        "attackDurationMs": 13
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.xmp-dst",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 13
+      },
+      {
+        "inputId": "truepic-zoetrope",
+        "attackId": "container.strip.xmp",
+        "detectorId": "detector.null",
+        "baselineDetected": false,
+        "postAttackDetected": false,
+        "postAttackConfidence": 0,
+        "attackDurationMs": 13
+      }
+    ]
+  }
+}
