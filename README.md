@@ -1,52 +1,35 @@
 # ai-watermark-robustness-auditor
 
-**Independent test lab for AI watermark and content-credential robustness.**
+Independent test rig for AI watermark and content-credential robustness.
+Runs a video or image through a standard attack battery (re-encode,
+platform-upload simulation, ABR ladder, C2PA `uuid`-box strip, XMP
+packet strip) and emits a JSON report mapped to the EU AI Act Art. 50(2)
+"effective, interoperable, robust, reliable" language.
 
-Given a watermarked video, run a standardized attack battery — re-encode,
-platform-upload simulation, screen capture, crop, ABR ladder, filter chains —
-and emit a signed robustness-score report mapped to the EU AI Act Art. 50(2)
-"effective, interoperable, robust, and reliable" language.
-
-Status: **v0.0 scaffold, plus first two-detector / five-attack run.** Five
-attacks (re-encode, YouTube-1080p platform-sim, HLS 720p VOD-ladder, C2PA
-`uuid`-box strip, XMP packet strip) and two detectors (C2PA manifest, IPTC
-XMP `DigitalSourceType`) are wired end-to-end. On a 24-item corpus
-([`corpus/corpus.json`](corpus/corpus.json): 7 Adobe `c2pa-js` samples, 1
-real Truepic-signed MP4 from `c2pa-org/public-testfiles`, 12 ffmpeg-synthetic
-C2PA-only clips, and 4 ffmpeg-synthetic clips carrying **both** a C2PA
-manifest and an `Iptc4xmpExt:DigitalSourceType` XMP packet injected pre-signing):
+Current wiring: 5 attacks × 2 detectors (C2PA manifest, IPTC XMP
+`DigitalSourceType`) across a 24-item corpus. Sample run:
 
 | Detector | Applicable | Survived | Grade |
 |---|---:|---:|:---:|
 | `detector.c2pa` | 91 | 19 (20.9 %) | **F** |
 | `detector.xmp-dst` | 19 | 3 (15.8 %) | **F** |
 
-**The headline finding — orthogonal failure modes.** Per-attack survival
-on the 4 `synth-xmp/` items that carry *both* disclosure mechanisms:
+Per-attack survival on the 4 items carrying *both* labels:
 
 |                         | `detector.c2pa`            | `detector.xmp-dst`         |
 |-------------------------|:--------------------------:|:--------------------------:|
-| `container.strip.c2pa`  | 0 / 3 survived (**0 %**)   | 3 / 3 survived (**100 %**) |
-| `container.strip.xmp`   | 3 / 3 survived (**100 %**) ¹ | 0 / 4 survived (**0 %**)   |
+| `container.strip.c2pa`  | 0 / 3 (**0 %**)            | 3 / 3 (**100 %**)          |
+| `container.strip.xmp`   | 3 / 3 (**100 %**) ¹        | 0 / 4 (**0 %**)            |
 
-¹ *C2PA manifest survives structurally (detector confidence 0.5); the
-hard-binding hash is invalidated because the signed bytes no longer
-match. See [METHODOLOGY §A5](docs/METHODOLOGY.md#a5--strip-xmp-packets-containerstripxmp) for what "present but broken" means in the
-validator's policy layer.*
+¹ Manifest is structurally present but the hard-binding hash is broken;
+conforming validators should treat it as tampered. See
+[METHODOLOGY §A5](docs/METHODOLOGY.md#a5--strip-xmp-packets-containerstripxmp).
 
-Each surgical-strip attack destroys its own target almost perfectly while
-leaving the *other* signal intact — the textbook orthogonal failure
-surface. Platform-sim and generic re-encode, by contrast, destroy both
-disclosures uniformly (0 % survival across all 4 re-encode-style rows).
-Operational conclusion: a claim of "robust AI disclosure" has to specify
-*which* disclosure channel and against *which* transformation. The
-mechanisms are not interchangeable, and a defender who relies on only
-one is one line of ffmpeg or ten bytes of hex-editor time away from
-losing the signal.
-
-Full matrix (24 × 5 × 3 = 360 cells) runs in ~45 seconds on a consumer
-laptop. See [`reports/sample-run.json`](reports/sample-run.json) for the
-canonical reference report.
+Each strip attack kills its own target and leaves the other label
+intact — the two labels are independent points of failure, not
+defense-in-depth. Re-encode and platform-sim destroy both uniformly
+(0% across all re-encode rows). Full matrix (24 × 5 × 3 = 360 cells)
+runs in ~45s on a laptop; see [`reports/sample-run.json`](reports/sample-run.json).
 
 ---
 

@@ -1,44 +1,10 @@
 #!/usr/bin/env node
-/**
- * tools/fetch-corpus.mjs — reproducibly regenerate the test corpus.
- *
- * The repo intentionally does NOT commit corpus media. Media files are
- * either (a) deterministically synthesised from ffmpeg lavfi sources
- * plus exiftool XMP injection, or (b) fetched from a pinned upstream
- * with a SHA-256 checksum. This script does both.
- *
- * Usage:
- *   node tools/fetch-corpus.mjs             # fetch / regenerate missing items
- *   node tools/fetch-corpus.mjs --force     # blow away and rebuild everything
- *   node tools/fetch-corpus.mjs --check     # only verify what's on disk; no I/O
- *   node tools/fetch-corpus.mjs --only=synth        # limit to one subtree
- *   node tools/fetch-corpus.mjs --only=synth-xmp    # limit to one subtree
- *   node tools/fetch-corpus.mjs --only=external     # only download upstream
- *
- * Exit codes:
- *   0  all target items are present and, where checksums are pinned,
- *      verified on disk
- *   1  one or more items missing / failed to regenerate / failed to verify
- *
- * Determinism note:
- *   ffmpeg output is not bit-reproducible across ffmpeg versions or
- *   builds (muxer timestamps, encoder banners, mdat ordering all leak
- *   in). The synthetic items below are therefore "semantically
- *   reproducible" rather than byte-reproducible — any clean run of the
- *   same ffmpeg recipe will produce a file that functions identically
- *   in the attack battery, but the SHA-256 will drift. That's the
- *   right trade-off for a tool where the sample run is the citation;
- *   if you want byte-exact parity with the published sample-run.json,
- *   use the release-asset path (TODO below).
- *
- * TODO — pinned binary hosting:
- *   The cleanest long-term answer is a GitHub Release on the repo
- *   with `corpus-v1.tar.gz` attached (total ~34 MB). This script
- *   should try the release URL first, verify SHA-256, and only fall
- *   back to regeneration if the release is unavailable. Implementing
- *   that is a ~30-line addition to fetchExternal() once the release
- *   is cut. Tracked at: https://github.com/blakewallan/ai-watermark-robustness-auditor/issues
- */
+// Regenerate the test corpus. Synth items rebuild from ffmpeg lavfi
+// sources (semantically reproducible; SHA-256 drifts across ffmpeg
+// versions). External items print a NOTICE pointing at upstream.
+// Usage: node tools/fetch-corpus.mjs [--force] [--check] [--only=synth|synth-xmp|external]
+// TODO: once a corpus-v1.tar.gz release asset exists, try release URL
+// first for byte-exact parity with sample-run.json; fall back to regen.
 
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
