@@ -2,40 +2,52 @@
 
 Test media for the robustness auditor, described by [`corpus.json`](corpus.json).
 
-## What's committed
+> **Media is not committed.** The repo tracks `corpus.json`, each
+> subtree's `NOTICE.md`, and the synth `corpus-fragment.json` manifests
+> — the actual ~34 MB of binary media is rebuilt locally by
+> `npm run setup-corpus` (implemented in
+> [`tools/fetch-corpus.mjs`](../tools/fetch-corpus.mjs)). Synthetic
+> clips in `synth/` and `synth-xmp/` are deterministically regenerated
+> from ffmpeg `lavfi` sources; external samples (`adobe-c2pa-js/`,
+> `c2pa-org-public/`) are documented in their NOTICE files and must
+> be fetched once from their upstream. See the repo-root README for
+> the full bootstrap flow.
+
+## What's committed (metadata only)
 
 - **`corpus.json`** — the manifest. Schema version 1. Paths inside resolve
   relative to this folder. Each item pins id, label, expected watermarks,
   sha256, license, and source URL so reports can be audited end-to-end.
-- **`adobe-c2pa-js/`** — seven C2PA-signed test assets (5 JPEGs, 1 MP4
-  init segment, 1 fMP4 media segment) redistributed from
+- **`adobe-c2pa-js/NOTICE.md`** — attribution and per-file SHA-256s for
+  the seven C2PA-signed test assets (5 JPEGs, 1 MP4 init segment, 1 fMP4
+  media segment) redistributed from
   [`contentauth/c2pa-js`](https://github.com/contentauth/c2pa-js) under
-  MIT. Attribution and per-file SHA-256s are in
-  [`adobe-c2pa-js/NOTICE.md`](adobe-c2pa-js/NOTICE.md).
-- **`c2pa-org-public/`** — a real (~15 MB) Truepic-signed MP4 from the
-  C2PA Conformance Program's
+  MIT.
+- **`c2pa-org-public/NOTICE.md`** — attribution for the real (~15 MB)
+  Truepic-signed MP4 from the C2PA Conformance Program's
   [`c2pa-org/public-testfiles`](https://github.com/c2pa-org/public-testfiles)
   corpus, redistributed under CC BY-SA 4.0. This is the headline
   real-world video item and the only decodable signed MP4 available in
-  either upstream source. Attribution in
-  [`c2pa-org-public/NOTICE.md`](c2pa-org-public/NOTICE.md).
-- **`synth/`** — twelve ffmpeg-synthetic clips (varied resolutions, codecs,
-  aspect ratios, frame rates, and a still image pair) signed with the
-  same public test credentials as above. These exist so the corpus
-  exercises every attack across a wide parameter grid without depending
-  on third-party hosting or redistribution rights. See
-  [`synth/NOTICE.md`](synth/NOTICE.md) for the full inventory and
-  [below](#regenerating-the-synth-subtree) for the exact ffmpeg invocations.
-- **`synth-xmp/`** — four ffmpeg-synthetic clips (3 MP4s + 1 JPEG) that
+  either upstream source.
+- **`synth/NOTICE.md`** + **`synth/corpus-fragment.json`** — inventory
+  and signing metadata for the twelve ffmpeg-synthetic clips (varied
+  resolutions, codecs, aspect ratios, frame rates, plus a still-image
+  pair) signed with the same public test credentials. These exist so
+  the corpus exercises every attack across a wide parameter grid
+  without depending on third-party hosting or redistribution rights.
+  See [below](#regenerating-the-synth-subtree) for the exact ffmpeg
+  invocations (also encoded in `tools/fetch-corpus.mjs`).
+- **`synth-xmp/NOTICE.md`** + **`synth-xmp/corpus-fragment.json`** —
+  inventory for four ffmpeg-synthetic clips (3 MP4s + 1 JPEG) that
   carry **both** a C2PA manifest and an `Iptc4xmpExt:DigitalSourceType`
   XMP packet injected *before* signing so the DST URI is part of the
   C2PA-hashed bitstream. Exists specifically to exercise
   `detector.xmp-dst` in the default matrix. See
-  [`synth-xmp/NOTICE.md`](synth-xmp/NOTICE.md) and
   [below](#regenerating-the-synth-xmp-subtree) for the invocations.
 
-Everything else under `corpus/` is `.gitignore`d — add your own local
-samples freely without worrying about accidental commits.
+Any binary media under `corpus/` is `.gitignore`d by extension
+(`*.mp4`, `*.m4a`, `*.jpg`, `*.png`, `*.webp`, etc.) — add your own
+local samples freely without worrying about accidental commits.
 
 ## Regenerating the `synth/` subtree
 

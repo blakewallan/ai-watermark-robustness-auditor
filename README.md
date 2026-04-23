@@ -96,10 +96,24 @@ timestamps are on the v0.1 roadmap.
 npm install
 npm run build
 npm run test
+npm run setup-corpus      # regenerates synth/ and synth-xmp/ locally
 npm run audit -- help
 npm run audit -- list-attacks
 npm run audit -- list-detectors
 ```
+
+> **Note on corpus media.** The repo tracks only corpus *metadata*
+> ([`corpus/corpus.json`](corpus/corpus.json) and each subtree's
+> `NOTICE.md` / `corpus-fragment.json`); the ~34 MB of media files are
+> fetched or regenerated on demand by `npm run setup-corpus`. Synthetic
+> clips in `corpus/synth/` and `corpus/synth-xmp/` are built from
+> ffmpeg `lavfi` sources plus (for XMP) exiftool injection — no
+> external dependencies. External samples (the Truepic zoetrope in
+> `corpus/c2pa-org-public/` and the Adobe `c2pa-js` sample pack) are
+> not auto-downloaded yet; run `npm run setup-corpus` and the script
+> will print a stable NOTICE pointing at the upstream source for each
+> missing file. A future GitHub Release will make those downloads
+> automatic; see `tools/fetch-corpus.mjs` top-of-file TODO.
 
 To run the attack battery against the bundled corpus:
 
@@ -131,6 +145,8 @@ Positional inputs and `--corpus=` can be combined.
 
 - Node.js ≥ 20
 - `ffmpeg` on `PATH` (override with `--ffmpeg-path=...`)
+- `exiftool` on `PATH` (only needed for `npm run setup-corpus`; the
+  audit itself does not call exiftool)
 - Windows, macOS, or Linux
 
 ---

@@ -38,6 +38,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "audit": "node dist/bin/watermark-audit.js",
+    "setup-corpus": "node tools/fetch-corpus.mjs",
     "sign-corpus": "node tools/sign-corpus.mjs",
     "prepublishOnly": "npm run clean && npm run build"
   },

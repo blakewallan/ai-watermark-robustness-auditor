@@ -2,23 +2,35 @@ node_modules/
 dist/
 coverage/
 
-# Test corpus — ad-hoc samples stay local, but the bundled fixtures
-# (MIT-licensed Adobe `c2pa-js` samples and CC-BY-SA-4.0 Truepic sample
-# from c2pa-org/public-testfiles; see their respective NOTICE.md files)
-# and the manifest are committed so `watermark-audit run --corpus=corpus/corpus.json`
-# works out of the box.
+# Test corpus — metadata is tracked, media files are not. Regenerate
+# them locally with `npm run setup-corpus` (see tools/fetch-corpus.mjs).
+# Synthetic clips are deterministically rebuilt from ffmpeg lavfi
+# sources; external samples (Truepic zoetrope, Adobe c2pa-js pack) are
+# documented in their NOTICE.md and must be fetched once from upstream.
 corpus/*
 !corpus/.gitkeep
 !corpus/README.md
 !corpus/corpus.json
 !corpus/adobe-c2pa-js/
-!corpus/adobe-c2pa-js/**
 !corpus/c2pa-org-public/
-!corpus/c2pa-org-public/**
 !corpus/synth/
-!corpus/synth/**
 !corpus/synth-xmp/
-!corpus/synth-xmp/**
+
+# Inside each subtree, track only the metadata (.json / NOTICE.md /
+# .gitkeep) — any binary media extension is ignored.
+corpus/**/*.mp4
+corpus/**/*.m4v
+corpus/**/*.m4a
+corpus/**/*.m4s
+corpus/**/*.mov
+corpus/**/*.mp3
+corpus/**/*.wav
+corpus/**/*.webm
+corpus/**/*.webp
+corpus/**/*.jpg
+corpus/**/*.jpeg
+corpus/**/*.png
+corpus/**/*.gif
 
 # Generated reports and scratch work. sample-run.json is the canonical
 # reference run committed with the repo so readers can see the JSON report
@@ -44,6 +56,6 @@ Thumbs.db
 # Tarballs from npm pack
 *.tgz
 
-# ffmpeg experimental scratch
-init.mp4
-
+# ffmpeg scratch at repo root (init segments, one-off probes)
+/init.mp4
+/init.m4s
